@@ -150,8 +150,3 @@ jobs:
       with:
         name: build-${{ matrix.target }}
         path: export/release/${{matrix.target}}/bin/
-    - name: Upload build artifacts
-      uses: ./.github/actions/upload-itch
-      with:
-        butler-key: ${{ secrets.BUTLER_API_KEY}}
-        target: ${{ matrix.target }}
