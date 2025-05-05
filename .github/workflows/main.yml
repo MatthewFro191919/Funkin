@@ -24,9 +24,28 @@ jobs:
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - uses: actions/checkout@v4.1.7
+      - name: Get checkout token
+        uses: actions/create-github-app-token@v1
+        id: app_token
+        with:
+          app-id: ${{ vars.APP_ID }}
+          private-key: ${{ secrets.APP_PEM }}
+          owner: ${{ github.repository_owner }}
+
+      - name: Checkout repo
+        uses: funkincrew/ci-checkout@v6
         with:
           submodules: 'recursive'
+
+      - name: Setup build environment
+        uses: ./.github/actions/setup-haxe
+        with:
+          gh-token: ${{ steps.app_token.outputs.token }}
+      - name: Setup HXCPP dev commit
+        run: |
+          cd .haxelib/hxcpp/git/tools/hxcpp
+          haxe compile.hxml
+          cd ../../../../..
 
       - uses: krdlab/setup-haxe@master
         with:
@@ -55,9 +74,28 @@ jobs:
 
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - uses: actions/checkout@v4.1.7
+      - name: Get checkout token
+        uses: actions/create-github-app-token@v1
+        id: app_token
+        with:
+          app-id: ${{ vars.APP_ID }}
+          private-key: ${{ secrets.APP_PEM }}
+          owner: ${{ github.repository_owner }}
+
+      - name: Checkout repo
+        uses: funkincrew/ci-checkout@v6
         with:
           submodules: 'recursive'
+
+      - name: Setup build environment
+        uses: ./.github/actions/setup-haxe
+        with:
+          gh-token: ${{ steps.app_token.outputs.token }}
+      - name: Setup HXCPP dev commit
+        run: |
+          cd .haxelib/hxcpp/git/tools/hxcpp
+          haxe compile.hxml
+          cd ../../../../..
 
       - uses: krdlab/setup-haxe@master
         with:
@@ -85,9 +123,28 @@ jobs:
 
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - uses: actions/checkout@v4.1.7
+      - name: Get checkout token
+        uses: actions/create-github-app-token@v1
+        id: app_token
+        with:
+          app-id: ${{ vars.APP_ID }}
+          private-key: ${{ secrets.APP_PEM }}
+          owner: ${{ github.repository_owner }}
+
+      - name: Checkout repo
+        uses: funkincrew/ci-checkout@v6
         with:
           submodules: 'recursive'
+
+      - name: Setup build environment
+        uses: ./.github/actions/setup-haxe
+        with:
+          gh-token: ${{ steps.app_token.outputs.token }}
+      - name: Setup HXCPP dev commit
+        run: |
+          cd .haxelib/hxcpp/git/tools/hxcpp
+          haxe compile.hxml
+          cd ../../../../..
 
       - uses: krdlab/setup-haxe@master
         with:
