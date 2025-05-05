@@ -156,21 +156,21 @@
     {
       "name": "mcover",
       "type": "git",
-      "dir": "src",
+      "dir": null,
       "ref": "c3c47cd682b0b202a41caee95321989391b617ef",
       "url": "https://github.com/massive-oss/mcover"
     },
     {
       "name": "mockatoo",
       "type": "git",
-      "dir": "src",
+      "dir": null,
       "ref": "13d77a0a8eaf5e789ef5dae6cd33eee812deda36",
       "url": "https://github.com/FunkinCrew/mockatoo"
     },
     {
       "name": "munit",
       "type": "git",
-      "dir": "src",
+      "dir": null,
       "ref": "f61be7f7ba796595f45023ca65164a485aba0e7e",
       "url": "https://github.com/FunkinCrew/MassiveUnit"
     },
