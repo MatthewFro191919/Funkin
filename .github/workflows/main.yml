@@ -24,15 +24,7 @@ jobs:
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - name: Checkout repo
-        uses: funkincrew/ci-checkout@v6
-        with:
-          submodules: 'recursive'
-      - name: Setup HXCPP dev commit
-        run: |
-          cd .haxelib/hxcpp/git/tools/hxcpp
-          haxe compile.hxml
-          cd ../../../../..
+      - uses: actions/checkout@v4.1.7
 
       - uses: krdlab/setup-haxe@master
         with:
@@ -45,12 +37,15 @@ jobs:
           haxelib setup ~/haxelib
           haxelib install hmm --quiet
           haxelib run hmm install --quiet
+      - name: Get Game Assets
+        run: |
+           git submodule update --init --recursive
       - name: Skip SScript setup mode
         run: echo 'oy9:showMacroty8:loopCosti25y10:includeAllfg' >> ~/settings.cocoa
       - name: Create Version Tag
         run: echo "${{github.run_id}}" > VERSION
       - name: Compile
-        run: haxelib run lime build linux -DFEATURE_STAGE_EDITOR -DFEATURE_GHOST_TAPPING
+        run: haxelib run lime build linux -DFEATURE_STAGE_EDITOR -DFEATURE_GHOST_TAPPING *$/DEFAULT_ANSWER=y
       - name: Publish Artifact
         uses: actions/upload-artifact@v4
         with:
@@ -61,15 +56,7 @@ jobs:
 
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - name: Checkout repo
-        uses: funkincrew/ci-checkout@v6
-        with:
-          submodules: 'recursive'
-      - name: Setup HXCPP dev commit
-        run: |
-          cd .haxelib/hxcpp/git/tools/hxcpp
-          haxe compile.hxml
-          cd ../../../../..
+      - uses: actions/checkout@v4.1.7
 
       - uses: krdlab/setup-haxe@master
         with:
@@ -80,13 +67,16 @@ jobs:
           haxelib setup C:/haxelib
           haxelib install hmm --quiet
           haxelib run hmm install --quiet
+      - name: Get Game Assets
+        run: |
+           git submodule update --init --recursive
       - name: Skip SScript setup mode
         run: echo 'oy9:showMacroty8:loopCosti25y10:includeAllfg' >> %USERPROFILE%/settings.cocoa
         shell: cmd
       - name: Create Version Tag
         run: echo "${{github.run_id}}" > VERSION
       - name: Compile
-        run: haxelib run lime build windows -DFEATURE_STAGE_EDITOR -DFEATURE_GHOST_TAPPING
+        run: haxelib run lime build windows -DFEATURE_STAGE_EDITOR -DFEATURE_GHOST_TAPPING *$/DEFAULT_ANSWER=y
       - name: Publish Artifact
         uses: actions/upload-artifact@v4
         with:
@@ -97,15 +87,7 @@ jobs:
 
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - name: Checkout repo
-        uses: funkincrew/ci-checkout@v6
-        with:
-          submodules: 'recursive'
-      - name: Setup HXCPP dev commit
-        run: |
-          cd .haxelib/hxcpp/git/tools/hxcpp
-          haxe compile.hxml
-          cd ../../../../..
+      - uses: actions/checkout@v4.1.7
 
       - uses: krdlab/setup-haxe@master
         with:
@@ -117,12 +99,15 @@ jobs:
           haxelib install hxcpp > /dev/null --quiet
           haxelib install hmm --quiet
           haxelib run hmm install --quiet
+      - name: Get Game Assets
+        run: |
+           git submodule update --init --recursive
       - name: Skip SScript setup mode
         run: echo 'oy9:showMacroty8:loopCosti25y10:includeAllfg' >> ~/settings.cocoa
       - name: Create Version Tag
         run: echo "${{github.run_id}}" > VERSION
       - name: Compile
-        run: haxelib run lime build mac -DFEATURE_STAGE_EDITOR -DFEATURE_GHOST_TAPPING
+        run: haxelib run lime build mac -DFEATURE_STAGE_EDITOR -DFEATURE_GHOST_TAPPING *$/DEFAULT_ANSWER=y
       - name: Publish Artifact
         uses: actions/upload-artifact@v4
         with:
